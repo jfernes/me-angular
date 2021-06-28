@@ -1,0 +1,22 @@
+<div class="container mt-3">
+    <div class="card mx-auto" style="width: 20rem;">
+        <div class="card-body ">
+            <h5 class="card-title">Entre como {{ rol }}</h5>
+            <div *ngIf="error" class="alert alert-danger mt-3" role="alert">
+                Usuario o contraseña incorrectos.
+            </div>
+            <form [formGroup]="formLogin" >
+                <div class="mb-3">
+                    <input type="text" class="form-control" formControlName="usuario" id="textUsuario" placeholder="Usuario">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" formControlName="clave" id="textClave" placeholder="Contraseña">
+                </div>
+            </form>
+            <div>
+                <button type="button" (click)="login()" [disabled]="!formLogin.valid" class="btn btn-outline-warning btn-md">Iniciar sesión</button>
+            </div>
+            
+        </div> 
+    </div>
+</div>

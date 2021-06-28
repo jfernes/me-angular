@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'citasmedicas';
+
+  constructor(){
+    //limpiar datos del usuario
+    //localStorage.clear();
+  }
 }

@@ -1,0 +1,11 @@
+<app-medico-inicio></app-medico-inicio>
+<div class="container">
+    <div class="col ">
+        <div class="card mt-3 ml-1 mx-auto" style="width: 16rem;" *ngFor="let p of pacientes">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{p.usuario}}</h5>
+            <p class="card-text">{{p.nombre}} {{p.apellidos}}</p>
+          </div>
+        </div>
+      </div>
+      

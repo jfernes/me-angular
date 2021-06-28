@@ -1,0 +1,79 @@
+<div class="container mt-3">
+    <div class="card mx-auto" style="width: 45rem;">
+        <div class="card-body ">
+            <h5 class="card-title">Regístrese como {{ rol }}</h5>
+            <div *ngIf="error" class="alert alert-danger mt-3" role="alert">
+                Usuario ya registrado.
+            </div>
+            <div *ngIf="success" class="alert alert-success mt-3" role="alert">
+                Usuario registrado con éxito.
+            </div>
+            <!-- form paciente -->
+            <div *ngIf="vistaPac" class="mb-3">
+                <form [formGroup]="formRegistroPaciente" >
+                <div class="row mb-3">
+                    
+                    <div class="col-md">
+                        <input type="text" formControlName="nombre" class="form-control" id="textNombre" placeholder="Nombre" required>
+                    </div>
+                    <div  class="col-md"> 
+                        <input type="text" formControlName="nss" class="form-control" id="textNss" placeholder="NSS" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" formControlName="apellidos" class="form-control" id="textApellidos" placeholder="Apellidos" required>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md">
+                        <input type="text" formControlName="numTarjeta" class="form-control" id="textNumTarjeta" placeholder="Número de tarjeta" required>
+                    </div>
+                    <div class="col-md"> 
+                        <input type="text" formControlName="telefono" class="form-control" id="textTelefono" placeholder="Teléfono" required>
+                    </div>
+                </div>
+                <div class="mb-3"> 
+                    <input type="text" formControlName="direccion" class="form-control" id="textDireccion" placeholder="Dirección" required>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md">
+                        <input type="text" formControlName="usuario" class="form-control" id="textUsuario" placeholder="Usuario" required>
+                    </div>
+                    <div class="col-md"> 
+                        <input type="password" formControlName="clave" class="form-control" id="textClave" placeholder="Contraseña">
+                    </div>
+                </div>
+                </form> 
+                <button type="button" [disabled]="formRegistroPaciente.invalid" (click)="registroPaciente()" class="btn btn-outline-warning btn-md">Registrarse</button>          
+            </div>
+            <!-- form medico -->
+            <div *ngIf="!vistaPac" class="mb-3">
+                <form [formGroup]="formRegistroMedico" >
+                <div class="row mb-3">
+                    
+                    <div class="col-md">
+                        <input type="text" formControlName="nombre" class="form-control" id="textNombre" placeholder="Nombre" required>
+                    </div>
+                    <div class="col-md"> 
+                        <input type="text" formControlName="numColegiado" class="form-control" id="textNumColegiado" placeholder="Número de colegiado" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" formControlName="apellidos" class="form-control" id="textApellidos" placeholder="Apellidos" required>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md">
+                        <input type="text" formControlName="usuario" class="form-control" id="textUsuario" placeholder="Usuario" required>
+                    </div>
+                    <div class="col-md"> 
+                        <input type="password" formControlName="clave" class="form-control" id="textClave" placeholder="Contraseña">
+                    </div>
+                </div>
+                </form>  
+                <button type="button" [disabled]="formRegistroMedico.invalid" (click)="registroMedico()" class="btn btn-outline-warning btn-md">Registrarse</button>         
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</div>

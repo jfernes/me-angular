@@ -1,0 +1,45 @@
+<app-paciente-inicio></app-paciente-inicio>
+<div class="container">
+    <div class="col ">
+        <div class="card mt-3 ml-1 mx-auto" style="width: 16rem;" *ngFor="let m of medicos">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{m.usuario}}</h5>
+            <p class="card-text">{{m.nombre}} {{m.apellidos}}</p>
+            <div class="text-center">
+              <button type="button" data-toggle="modal" data-target="#ModalCita" class="btn btn-outline-dark mt-3">Pedir cita</button>
+            </div>
+            <div class="modal fade" id="ModalCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ModalCita">Nueva cita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- carteles de cita creada correctamente o no -->
+                  <div *ngIf="errorCita" class="alert alert-danger mt-3" role="alert">
+                      No se ha podido registrar la cita.
+                  </div>
+                  <div *ngIf="successCita" class="alert alert-success mt-3" role="alert">
+                      Cita registrada con éxito.
+                  </div>
+                    <!-- formulario de nueva cita -->
+                    <form [formGroup]="formNC">
+                      <input type="text" value="{{m.usuario}}" formControlName="medico" class="form-control" placeholder="Medico" required>
+                      <input type="text" formControlName="motivoCita" class="form-control mt-3" placeholder="Motivo de la cita" required>
+                      <input type="text" formControlName="fechaHora" class="form-control mt-3" placeholder="Fecha de la cita con el formato aaaa-mm-dd hh:mm:ss" required>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                    <button type="button" [disabled]="formNC.invalid" (click)="pedirCita()" class="btn btn-outline-dark">Crear cita</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      

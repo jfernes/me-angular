@@ -1,0 +1,84 @@
+<app-medico-inicio></app-medico-inicio>
+<div class="container">
+    <div class="col " *ngIf="pacientes!=null">
+        <div class="card mt-3 ml-1 mx-auto" style="width: 16rem;" *ngFor="let c of citas; index as i">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{c.fechaHora}}</h5>
+            <p class="card-text" *ngIf="pacientes[i]!=null" >{{pacientes[i].nombre}} {{pacientes[i].apellidos}}</p>
+            <p class="card-text" >{{c.motivoCita}}</p>
+            <div class="text-center">
+              <button type="button" (click)="verDiagnostico(c.id)" class="btn btn-outline-dark mt-3" data-toggle="modal" data-target="#ModalDiagnostico">Ver diagnóstico</button>
+            </div> 
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-dark mt-3" data-toggle="modal" data-target="#ModalcrearDiagnostico">Añadir diagnóstico</button>
+            </div>           
+          </div>
+
+          <!-- modal de ver diagnostico -->
+          <div class="modal fade" id="ModalDiagnostico" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalDiagnostico">Diagnóstico</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5 class="mt-3">Paciente</h5>
+                  <p *ngIf="pacientes[i]!=null">
+                      {{pacientes[i].nombre}} 
+                      {{pacientes[i].apellidos}}</p>
+                  <hr>
+                  <h5 class="mt-3">Enfermedad</h5>
+                  <p *ngIf="diagnostico!=null"> {{diagnostico.enfermedad}}</p>
+                  <hr>
+                  <h5 class="mt-3">Valoración del especialista</h5>
+                  <p *ngIf="diagnostico!=null">{{diagnostico.valoracionEspecialista}}</p>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- modal de crear diagnostico -->
+          <div class="modal fade" id="ModalcrearDiagnostico" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalcrearDiagnostico">Añadir Diagnóstico</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- carteles de diagnostico creado correctamente o no -->
+                <div *ngIf="errorDiag" class="alert alert-danger mt-3" role="alert">
+                    No se ha podido registrar el diagnóstico.
+                </div>
+                <div *ngIf="successDiag" class="alert alert-success mt-3" role="alert">
+                    Diagnóstico registrado con éxito.
+                </div>
+                  <!-- formulario de nuevo diagnostico -->
+                  <form [formGroup]="formDiag">
+                    <input type="text" formControlName="enfermedad" class="form-control" placeholder="Enfermedad" required>
+                    <input type="text" formControlName="valoracionEspecialista" class="form-control mt-3" placeholder="Valoración del especialista" required>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                  <button type="button" [disabled]="formDiag.invalid" (click)="crearDiagnostico(c.id)" class="btn btn-outline-dark">Añadir diagnóstico</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+    </div>
+</div>
+
+

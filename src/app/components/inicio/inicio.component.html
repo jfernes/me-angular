@@ -1,0 +1,19 @@
+<app-encabezado></app-encabezado>
+<div class="text-center mt-5">
+    <div class="mb-4">
+        <h3>Bienvenido al portal de citas médicas de MetaEnlace</h3>
+        <h4>Por favor indique cuál es su rol</h4>
+    </div>
+    <div>
+        <button type="button" class="btn btn-outline-warning btn-md mr-2" (click)="p=true">Soy un paciente</button>
+        <button type="button" class="btn btn-outline-warning btn-md" (click)="p=false">Soy un médico</button>
+    </div>
+    
+    <app-login *ngIf="!r" [vistaPac]="p" [rol]="getRol(p)"></app-login>
+    <button *ngIf="!r" type="button" class="btn btn-outline-warning btn-md mt-3" (click)="r=true">Registrarse</button>
+    <app-registro *ngIf="r" [vistaPac]="p" [rol]="getRol(p)"></app-registro>
+    <button *ngIf="r" type="button" class="btn btn-outline-warning btn-md mt-3 mb-5" (click)="r=false">Volver a inicio de sesión</button>
+    <div class="mt-5"></div>
+
+</div>
+<app-pie></app-pie>
